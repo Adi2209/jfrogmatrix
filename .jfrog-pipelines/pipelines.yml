@@ -24,6 +24,8 @@ pipelines:
         type: Matrix
         stepMode: Bash
         configuration: 
+          inputSteps:
+            - name: step1
           multiNode: true
           affinityGroup: together
         execution:
