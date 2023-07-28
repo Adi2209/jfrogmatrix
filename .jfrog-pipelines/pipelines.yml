@@ -40,3 +40,6 @@ pipelines:
             - name: mvn_build_step
           outputResources:
             - name: mvn_build_info
+        execution: 
+          onComplete: 
+            - save_tests $res_myGitRepo_resourcePath/testreport.xml
