@@ -11,7 +11,7 @@ resources:
 pipelines:
   - name: Maven_Quickstart
     steps:
-      - name: mvn_build_step
+      - name: step1
         type: Bash
         configuration:
           inputResources:
