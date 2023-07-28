@@ -1,4 +1,4 @@
-gitProvider: myGithub
+gitProvider: int1
 artifactory: myArtifactory
 repoPath: adi2209/jfrogmatrix
 deployerRepo: quickstarts-maven-local
