@@ -1,3 +1,4 @@
-myRepo: 
-  gitProvider: adityan_int1 # this will be the name of the integration made on the JFrog Pipelines
-  path: adi2209/jfrogpipelineexample
+gitProvider: myGithub
+artifactory: myArtifactory
+repoPath: adi2209/jfrogmatrix
+deployerRepo: quickstarts-maven-local
