@@ -1,0 +1,42 @@
+pipelines:
+  - name: matrix_check
+    steps:
+      - name: step1
+        type: Matrix
+        stepMode: Bash
+        configuration: 
+          multiNode: true
+          affinityGroup: together
+        execution:
+          onStart:
+            - echo "Preparing for work..."
+          onExecute:                             
+            - echo "Executing steplet $step_name"
+            - echo "env1 = $env1"
+            - echo "env2 = $env2"
+          onSuccess:
+            - echo "Job well done!"
+          onFailure:
+            - echo "uh oh, something went wrong"
+          onComplete: #always
+            - echo "Cleaning up some stuff"
+      - name: step2
+        type: Matrix
+        stepMode: Bash
+        configuration: 
+          multiNode: true
+          affinityGroup: together
+        execution:
+          onStart:
+            - echo "Preparing for work..."
+          onExecute:                             
+            - echo "Executing steplet $step_name"
+            - echo "env1 = $env1"
+            - echo "env2 = $env2"
+          onSuccess:
+            - echo "Job well done!"
+          onFailure:
+            - echo "uh oh, something went wrong"
+          onComplete: #always
+            - echo "Cleaning up some stuff"
+      
