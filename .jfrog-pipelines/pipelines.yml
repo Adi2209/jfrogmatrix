@@ -1,21 +1,38 @@
-template: true   # required for local templates
-valuesFilePath: ./values.yml
+template: true 
 
 resources:
-  - name: mvn_repo
+  - name: myFirstRepo
     type: GitRepo
     configuration:
-      path: {{ .Values.repoPath }}
-      gitProvider: {{ .Values.gitProvider }}
+      gitProvider: {{ .Values.myRepo.gitProvider }}
+      path: {{ .Values.myRepo.path }}
+  - name: propertyBag
+    type: PropertyBag
+    configuration:
+      foo: bar
+      foo1: bar1
+      foo2: bar2
 
 pipelines:
-  - name: Maven_Quickstart
+  - name: pipeline_test
     steps:
-      - name: step1
+      - name: step_1
         type: Bash
         configuration:
           inputResources:
-            - name: mvn_repo
+            - name: myFirstRepo
+          outputResources:
+            - name: propertyBag
         execution:
-          onStart:
-             - save_tests $res_mvn_repo_resourcePath/tests
+          onExecute:
+            - echo "step_1 executed"
+  - name: pipeline_test2
+    steps:
+      - name: step_2
+        type: Bash
+        configuration:
+          inputResources:
+            - name: propertyBag
+        execution:
+          onExecute:
+            - echo "step_2 executed""

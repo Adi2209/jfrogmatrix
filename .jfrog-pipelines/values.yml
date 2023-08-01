@@ -1,4 +1,3 @@
 gitProvider: int1
 artifactory: art1
 repoPath: adi2209/jfrogmatrix
-deployerRepo: quickstarts-maven-local
