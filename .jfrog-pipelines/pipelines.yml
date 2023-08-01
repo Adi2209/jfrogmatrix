@@ -25,6 +25,7 @@ pipelines:
         execution:
           onExecute:
             - echo "step_1 executed"
+            - write_output propertyBag "key=value"
   - name: pipeline_test2
     steps:
       - name: step_2
