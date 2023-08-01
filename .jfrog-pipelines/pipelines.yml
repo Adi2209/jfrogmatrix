@@ -34,4 +34,4 @@ pipelines:
             - name: propertyBag
         execution:
           onExecute:
-            - echo "step_2 executed""
+            - echo "step_2 executed"
