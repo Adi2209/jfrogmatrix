@@ -37,4 +37,4 @@ pipelines:
         execution:
           onExecute:
             - echo "step_2 executed"
-            - echo DT=$(date)
+            - echo $DT
