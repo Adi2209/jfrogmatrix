@@ -1,4 +1,5 @@
 template: true 
+valuesFilePath: ./values.yml
 
 resources:
   - name: myFirstRepo
