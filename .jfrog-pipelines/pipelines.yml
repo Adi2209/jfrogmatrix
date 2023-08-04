@@ -15,26 +15,229 @@ resources:
       foo2: bar2
 
 pipelines:
-  - name: pipeline_test
-    steps:
-      - name: step_1
-        type: Bash
+  -- name: matrix_example
+        type: Matrix
+        stepMode: Bash
         configuration:
-          outputResources:
-            - name: propertyBag
+          inputSteps: 
+            - name: matrix_fan_out_example
+
+        stepletMultipliers:
+          environmentVariables:             # Sets of environment variables for steplets
+            - animal:    dog                            # - Set 1
+              mineral:   copper
+              vegetable: carrot
+            - animal:    goat                           # - Set 2
+              mineral:   iron
+              vegetable: broccoli
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    dog                            # - Set 1
+              mineral:   copper
+              vegetable: carrot
+            - animal:    goat                           # - Set 2
+              mineral:   iron
+              vegetable: broccoli
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    dog                            # - Set 1
+              mineral:   copper
+              vegetable: carrot
+            - animal:    goat                           # - Set 2
+              mineral:   iron
+              vegetable: broccoli
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead     
+            - animal:    dog                            # - Set 1
+              mineral:   copper
+              vegetable: carrot
+            - animal:    goat                           # - Set 2
+              mineral:   iron
+              vegetable: broccoli
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    dog                            # - Set 1
+              mineral:   copper
+              vegetable: carrot
+            - animal:    goat                           # - Set 2
+              mineral:   iron
+              vegetable: broccoli
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    dog                            # - Set 1
+              mineral:   copper
+              vegetable: carrot
+            - animal:    goat                           # - Set 2
+              mineral:   iron
+              vegetable: broccoli
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead 
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead  
+            - animal:    lizard             # - Set 3
+              mineral:   lead        
+
         execution:
           onExecute:
-            - echo "step_1 executed"
-            - write_output propertyBag "DT=$(date)"
-            - echo DT=$(date)
-  - name: pipeline_test2
-    steps:
-      - name: step_2
-        type: Bash
-        configuration:
-          inputResources:
-            - name: propertyBag
-        execution:
-          onExecute:
-            - echo "step_2 executed"
-            - echo $DT
+            - echo "I am executing matrix steplet ${steplet_id}"
+            - echo "Envs animal= $animal , mineral = $mineral , vegetable = $vegetable"
