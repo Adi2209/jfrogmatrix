@@ -6,7 +6,7 @@ pipelines:
         stepMode: Bash
         configuration: 
          stepletMultipliers:
-        environmentVariables:             # Sets of environment variables for steplets
+          environmentVariables:             # Sets of environment variables for steplets
           - animal:    dog                            # - Set 1
             mineral:   copper
             vegetable: carrot
@@ -219,28 +219,28 @@ pipelines:
           #   mineral:   lead  
           # - animal:    lizard             # - Set 3
           #   mineral:   lead        
-      execution:
-        onExecute:
-          - echo "I am executing matrix steplet ${steplet_id}"
-          - echo "Envs animal= $animal , mineral = $mineral , vegetable = $vegetable"
-      - name: step2
-        type: Matrix
-        stepMode: Bash
-        configuration: 
-          inputSteps:
-            - name: step1
-          multiNode: true
-          affinityGroup: together
         execution:
-          onStart:
-            - echo "Preparing for work..."
-          onExecute:                             
-            - echo "Executing steplet $step_name"
-            - echo "env1 = $env1"
-            - echo "env2 = $env2"
-          onSuccess:
-            - echo "Job well done!"
-          onFailure:
-            - echo "uh oh, something went wrong"
-          onComplete: #always
-            - echo "Cleaning up some stuff"
+          onExecute:
+            - echo "I am executing matrix steplet ${steplet_id}"
+            - echo "Envs animal= $animal , mineral = $mineral , vegetable = $vegetable"
+        - name: step2
+          type: Matrix
+          stepMode: Bash
+          configuration: 
+            inputSteps:
+              - name: step1
+            multiNode: true
+            affinityGroup: together
+          execution:
+            onStart:
+              - echo "Preparing for work..."
+            onExecute:                             
+              - echo "Executing steplet $step_name"
+              - echo "env1 = $env1"
+              - echo "env2 = $env2"
+            onSuccess:
+              - echo "Job well done!"
+            onFailure:
+              - echo "uh oh, something went wrong"
+            onComplete: #always
+              - echo "Cleaning up some stuff"
