@@ -6,7 +6,7 @@ pipelines:
         stepMode: Bash
         configuration: 
           concurrency:
-            - 50
+            - 50.0
         stepletMultipliers:
           environmentVariables:             # Sets of environment variables for steplets
           - animal:    dog                            # - Set 1
