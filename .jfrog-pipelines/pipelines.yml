@@ -224,4 +224,4 @@ pipelines:
           onExecute:
             - echo "I am executing matrix steplet ${steplet_id}"
             - echo "Envs animal= $animal , mineral = $mineral , vegetable = $vegetable"
-            - docker run hello-world
+            - docker run --rm hello-world 
