@@ -84,8 +84,6 @@ pipelines:
       - name: step_7
         type: Bash
         configuration: 
-          inputResources:
-            - name: myFirstRepo
           inputSteps: 
             - name: step_3
             - name: step_5

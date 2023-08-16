@@ -4,8 +4,6 @@ pipelines:
       - name: step1
         type: Matrix
         stepMode: Bash
-        configuration: 
-          # concurrency: 50
         stepletMultipliers:
           environmentVariables:             # Sets of environment variables for steplets
           - animal:    dog                            # - Set 1
