@@ -1,9 +1,4 @@
 resources:
-  - name: myFirstRepo
-    type: GitRepo # defines the resource type
-    configuration: # defines the resource definition
-      gitProvider: {{ .Values.myRepo.gitProvider }}
-      path: {{ .Values.myRepo.path }}
   - name: propertyBag
     type: PropertyBag
     configuration:
@@ -38,8 +33,9 @@ pipelines:
         type: Bash
         configuration:
           affinityGroup: ag1
-          inputResources:
-            - name: myFirstRepo
+        execution:
+          onExecute:
+            - echo "Executed step_1"
       - name: step_2
         type: Bash
         configuration:
