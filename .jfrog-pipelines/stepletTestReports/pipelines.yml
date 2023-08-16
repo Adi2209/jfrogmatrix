@@ -1,100 +1,75 @@
 resources:
-  - name: propertyBag
-    type: PropertyBag
+  - name: testTrigger
+    type: GitRepo
     configuration:
-      foo: bar
-      foo1: bar1
-      foo2: bar2
-  - name: step_1
-    type: PropertyBag
-    configuration:
-      key: value
-  - name: step_2
-    type: PropertyBag
-    configuration:
-      key: value
-  - name: step_3
-    type: PropertyBag
-    configuration:
-      key: value
-  - name: step_4
-    type: PropertyBag
-    configuration:
-      key: value
-  - name: step_5
-    type: PropertyBag
-    configuration:
-      key: value
-
+      gitProvider: int1
+      path: adi2209/jfrogmatrix
 pipelines:
-  - name: pipeline_trigger_1_adityan
-    steps: #step definiton
-      - name: step_1
+  - name: test_reports
+    configuration:
+      environmentVariables:
+        readOnly:
+          reportsCount: 10
+          suitesCount: 10
+      retentionPolicy:
+        maxAgeDays: 1
+    steps:
+      - name: test_report
         type: Bash
         configuration:
-          affinityGroup: ag1
+          inputResources:
+            - name: testTrigger
         execution:
           onExecute:
-            - echo "Executed step_1"
-      - name: step_2
-        type: Bash
-        configuration:
-          affinityGroup: ag1
-          inputSteps: 
-            - name: step_1
-        execution:
-          onExecute:
-            - echo "Executed step_1_1"
-      - name: step_3
-        type: Bash
-        configuration: 
-          inputSteps: 
-            - name: step_2
-        execution:
-          onExecute:
-            - echo "Executed step_1_2"
-      - name: step_4
-        type: Bash
-        configuration: 
-          inputSteps: 
-            - name: step_2
-        execution:
-          onExecute:
-            - sleep 3
-          onFailure:
-            - echo "Timed Out"
-      - name: step_5
-        type: Bash
-        configuration: 
-          inputSteps: 
-            - name: step_2
-        execution:
-          onExecute:
-            - echo "Executed step_1_5"
-      - name: step_6
-        type: Bash
-        configuration: 
-          inputSteps: 
-            - name: step_3
-            - name: step_5
-            - name: step_4
-        execution:
-          onExecute:
-            - echo "Executed step_1_6"
-      - name: step_7
-        type: Bash
-        configuration: 
-          inputSteps: 
-            - name: step_3
-            - name: step_5
-            - name: step_6
-        execution:
-          onExecute:
-            - echo "I am executing matrix steplet ${steplet_id}"
-            - echo "Envs animal= $animal , mineral = $mineral , vegetable = $vegetable"
-            - docker run --rm hello-world 
-            - save_tests testreport.xml
+            - cd $res_testTrigger_resourcePath
+            - npm install
+            - touch .env
+            - echo "REPORTS_COUNT=$reportsCount" >> .env
+            - echo "SUITES_COUNT=$suitesCount" >> .env
+            - TOTAL_TESTS=$(($reportsCount*$suitesCount))
+            - update_run_description "Total tests => $TOTAL_TESTS"
+            - set_run_name $TOTAL_TESTS
+            - npm run test
+            - save_tests $res_testTrigger_resourcePath/
           onSuccess:
-            - echo "Executed Successfully"
-
-
+            - echo "success"
+      - name: no_test_reports
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: test_report
+        execution:
+          onExecute:
+            - echo "done"
+      # - name: matrix_test_reports
+      #   type: Matrix
+      #   stepMode: Bash
+      #   configuration:
+      #     multiNode: true
+      #     inputResources:
+      #       - name: testTrigger
+      #     inputSteps:
+      #       - name: test_report
+      #   stepletMultipliers:
+      #     environmentVariables:
+      #       - animal:    dog
+      #         mineral:   copper
+      #         vegetable: carrot
+      #       - animal:    goat
+      #         mineral:   iron
+      #         vegetable: broccoli
+      #       - animal:    lizard
+      #         mineral:   lead
+      #   execution:
+      #     onExecute:
+      #       - pushd $res_testTrigger_resourcePath
+      #       - npm install
+      #       - touch .env
+      #       - echo "REPORTS_COUNT=$reportsCount" >> .env
+      #       - echo "SUITES_COUNT=$suitesCount" >> .env
+      #       - echo "STEPLET_NUMBER=$steplet_number" >> .env
+      #       - TOTAL_TESTS=$(($reportsCount*$suitesCount))
+      #       - update_run_description "Total tests => $TOTAL_TESTS"
+      #       - set_run_name $TOTAL_TESTS
+      #       - npm run test
+      #       - save_tests $res_testTrigger_resourcePath/
