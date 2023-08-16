@@ -40,9 +40,6 @@ pipelines:
           affinityGroup: ag1
           inputResources:
             - name: myFirstRepo
-        execution:
-          onExecute:
-            - printenv
       - name: step_2
         type: Bash
         configuration:
@@ -63,8 +60,6 @@ pipelines:
       - name: step_4
         type: Bash
         configuration: 
-          timeoutSeconds: 1
-          priority: 2
           inputSteps: 
             - name: step_2
         execution:
@@ -75,7 +70,6 @@ pipelines:
       - name: step_5
         type: Bash
         configuration: 
-          priority: 1
           inputSteps: 
             - name: step_2
         execution:
